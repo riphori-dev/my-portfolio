@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+}
+.white-important {
+  color: white !important;
+}
