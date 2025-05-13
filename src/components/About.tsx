@@ -334,11 +334,6 @@ const About: React.FC = () => {
               {/* Modal Header */}
               <div className="flex justify-between items-center p-6 border-b border-gray-200">
                 <div className="flex items-center">
-                  <img
-                    src="/images/profile-pic.jpg"
-                    alt="Rios Zoe Bunao"
-                    className="w-10 h-10 rounded-full mr-4"
-                  />
                   <div>
                     <h5 className="font-medium text-gray-900">
                       Rios Zoe Bunao
