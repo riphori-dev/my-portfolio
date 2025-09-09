@@ -12,12 +12,18 @@ interface SkillCategory {
 
 const categories: SkillCategory[] = [
   {
-    title: "Frontend",
+    title: "Languages",
     skills: [
       { name: "HTML", level: "Expert" },
       { name: "CSS", level: "Expert" },
       { name: "JavaScript", level: "Advanced" },
       { name: "TypeScript", level: "Advanced" },
+      { name: "C#", level: "Advanced" },
+    ],
+  },
+  {
+    title: "Frontend / UI",
+    skills: [
       { name: "React", level: "Advanced" },
       { name: "Tailwind CSS", level: "Advanced" },
       { name: "Bootstrap", level: "Advanced" },
@@ -28,14 +34,38 @@ const categories: SkillCategory[] = [
   {
     title: "Backend",
     skills: [
-      { name: "ASP.NET MVC", level: "Advanced" },
       { name: "ASP.NET Core", level: "Advanced" },
+      { name: "ASP.NET MVC", level: "Advanced" },
       { name: ".NET Framework", level: "Advanced" },
+      { name: "ASP.NET Web API", level: "Advanced" },
+      { name: "Minimal APIs", level: "Advanced" },
       { name: "Entity Framework Core", level: "Advanced" },
       { name: "SignalR", level: "Advanced" },
-      { name: "Minimal APIs", level: "Advanced" },
-      { name: "ASP.NET Web API", level: "Advanced" },
+    ],
+  },
+  {
+    title: "Databases",
+    skills: [
       { name: "MSSQL", level: "Advanced" },
+      { name: "PostgreSQL", level: "Advanced" },
+    ],
+  },
+  {
+    title: "DevOps / Testing",
+    skills: [
+      { name: "CI/CD", level: "Intermediate" },
+      { name: "Playwright", level: "Intermediate" },
+      { name: "Docker", level: "Advanced" },
+      { name: "xUnit", level: "Advanced" },
+      { name: "Selenium WebDriver", level: "Advanced" },
+    ],
+  },
+  {
+    title: "CMS / Content",
+    skills: [
+      { name: "WordPress", level: "Advanced" },
+      { name: "SEO (On‑page)", level: "Intermediate" },
+      { name: "Content Writing", level: "Advanced" },
     ],
   },
   {
@@ -47,16 +77,6 @@ const categories: SkillCategory[] = [
       { name: "Dependency Injection", level: "Advanced" },
       { name: "API Design", level: "Advanced" },
       { name: "Unit Testing", level: "Advanced" },
-      { name: "CI/CD", level: "Intermediate" },
-      { name: "Playwright", level: "Intermediate" },
-    ],
-  },
-  {
-    title: "Other",
-    skills: [
-      { name: "WordPress", level: "Advanced" },
-      { name: "SEO (On‑page)", level: "Intermediate" },
-      { name: "Content Writing", level: "Advanced" },
     ],
   },
 ];
@@ -102,46 +122,47 @@ const Skills: React.FC = () => {
               </div>
 
               <div className="p-6">
-                <ul className="space-y-3">
+                <div className="flex flex-wrap gap-3">
                   {category.skills.map((skill) => (
-                    <li key={skill.name} className="flex items-center justify-between">
-                      <span className="text-gray-200">{skill.name}</span>
+                    <span
+                      key={skill.name}
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-600 bg-slate-800/70 text-gray-200"
+                    >
+                      <span>{skill.name}</span>
                       <span
                         className={
-                          "px-2.5 py-1 rounded-full text-xs font-medium border " +
+                          "px-2 py-0.5 rounded-full text-[10px] font-semibold border " +
                           levelColor(skill.level)
                         }
                       >
                         {skill.level}
                       </span>
-                    </li>
+                    </span>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-16">
-          <a
-            href="#projects"
-            className="btn-contrast inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
-          >
-            View Projects
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
+        {/* Services mini-cards */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-white mb-6">Services</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: "Website Development", desc: "Responsive sites with modern stacks and best practices." },
+              { title: "API Development", desc: "REST APIs in .NET with security and documentation." },
+              { title: "UI Development", desc: "Clean, accessible interfaces in React/Tailwind/Bootstrap." },
+              { title: "N8N Automation", desc: "Automate workflows: webhooks, CRON, Notion, Gmail, more." },
+              { title: "Web Design", desc: "Design systems, layout, and UX-focused flows." },
+              { title: "WordPress Development", desc: "Custom themes, optimization, and integrations." },
+            ].map((svc) => (
+              <div key={svc.title} className="rounded-2xl border border-slate-700 bg-gradient-to-br from-slate-800 to-slate-900 p-5 hover:border-blue-500/40 transition-colors">
+                <h4 className="text-lg font-semibold text-white">{svc.title}</h4>
+                <p className="mt-2 text-sm text-gray-400">{svc.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

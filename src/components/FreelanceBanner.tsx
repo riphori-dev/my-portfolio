@@ -32,9 +32,10 @@ const FreelanceBanner: React.FC = () => {
             <a
               href="#contact"
               aria-label="Contact Me"
-              className="inline-flex items-center justify-center rounded-xl px-6 py-3 text-base sm:text-lg tracking-wide font-extrabold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:-translate-y-0.5 ring-1 ring-white/20 drop-shadow"
+              className="white-important inline-flex items-center justify-center rounded-xl px-6 py-3 text-base sm:text-lg tracking-wide font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:-translate-y-0.5 ring-1 ring-white/20 drop-shadow"
+              style={{ color: 'white !important', WebkitBackgroundClip: 'unset', backgroundClip: 'unset' }}
             >
-              Contact Me
+              <span style={{ color: 'white !important', WebkitBackgroundClip: 'unset', backgroundClip: 'unset' }}>Contact Me</span>
             </a>
           </div>
 
