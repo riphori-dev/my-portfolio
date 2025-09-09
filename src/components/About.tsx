@@ -210,62 +210,53 @@ const About: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Education */}
           <div>
-            <h3 className="text-2xl font-semibold text-white mb-6">
-              Education
-            </h3>
-            {education.map((edu, index) => (
-              <div
-                key={index}
-                className="bg-gray-800 rounded-lg p-6 shadow-lg mb-4"
-              >
-                <div className="flex items-center mb-3">
-                  {edu.logo && (
-                    <img
-                      src={edu.logo}
-                      alt={edu.school}
-                      className="w-10 h-10 mr-4 rounded-full"
-                    />
-                  )}
-                  <div>
-                    <h4 className="text-xl font-medium text-white">
-                      {edu.school}
-                    </h4>
-                    <p className="text-blue-500">{edu.years}</p>
+            <h3 className="text-2xl font-semibold text-white mb-6">Education</h3>
+            <div className="relative pl-6">
+              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-slate-700"></div>
+              {education.map((edu, index) => (
+                <div key={index} className="relative mb-6">
+                  <div className="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 ring-4 ring-slate-800"></div>
+                  <div className="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-lg">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h4 className="text-lg font-semibold text-white">{edu.school}</h4>
+                        <p className="text-blue-400 text-sm mt-1">{edu.degree}</p>
+                      </div>
+                      <span className="text-xs px-2 py-1 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/20">
+                        {edu.years}
+                      </span>
+                    </div>
+                    {edu.field && (
+                      <p className="text-gray-400 text-sm mt-3">{edu.field}</p>
+                    )}
                   </div>
                 </div>
-                <p className="text-gray-300">{edu.degree}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Work Experience */}
           <div>
-            <h3 className="text-2xl font-semibold text-white mb-6">
-              Work Experience
-            </h3>
-            {workExperiences.map((exp, index) => (
-              <div
-                key={index}
-                className="bg-gray-800 rounded-lg p-6 shadow-lg mb-4"
-              >
-                <div className="flex items-center mb-3">
-                  {exp.logo && (
-                    <img
-                      src={exp.logo}
-                      alt={exp.company}
-                      className="w-10 h-10 mr-4 rounded-full"
-                    />
-                  )}
-                  <div>
-                    <h4 className="text-xl font-medium text-white">
-                      {exp.company}
-                    </h4>
-                    <p className="text-blue-500">{exp.duration}</p>
+            <h3 className="text-2xl font-semibold text-white mb-6">Work Experience</h3>
+            <div className="relative pl-6">
+              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-slate-700"></div>
+              {workExperiences.map((exp, index) => (
+                <div key={index} className="relative mb-6">
+                  <div className="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 ring-4 ring-slate-800"></div>
+                  <div className="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-lg">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h4 className="text-lg font-semibold text-white">{exp.position}</h4>
+                        <p className="text-blue-400 text-sm mt-1">{exp.company}</p>
+                      </div>
+                      <span className="text-xs px-2 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                        {exp.duration}
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <p className="text-gray-300">{exp.position}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
@@ -283,38 +274,51 @@ const About: React.FC = () => {
             {writtenContent.map((article) => (
               <div
                 key={article.id}
-                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl cursor-pointer"
+                className="group relative rounded-xl overflow-hidden border border-slate-700 bg-gradient-to-br from-slate-800 to-slate-900 shadow-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl cursor-pointer"
                 onClick={() => openModal(article)}
               >
-                {/* Image Section - Only show if image exists */}
+                {/* Image */}
                 {article.image && (
-                  <div className="h-48">
+                  <div className="relative h-44 overflow-hidden">
                     <img
                       src={article.image}
                       alt={article.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+                    <div className="absolute top-3 left-3 text-xs px-2 py-1 rounded-full bg-slate-900/70 text-gray-200 border border-slate-600">
+                      {article.date}
+                    </div>
+                    <div className="absolute top-3 right-3 text-xs px-2 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                      {Math.ceil(article.content.length / 1000)} min read
+                    </div>
                   </div>
                 )}
 
-                {/* Content Section */}
-                <div className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div>
-                      <h5 className="font-medium text-white">Rios Zoe Bunao</h5>
-                      <p className="text-gray-400 text-xs">
-                        {article.date} •{" "}
-                        {Math.ceil(article.content.length / 1000)} min read
-                      </p>
-                    </div>
-                  </div>
-
-                  <h4 className="text-lg font-medium text-white mb-2">
+                {/* Content */}
+                <div className="p-5">
+                  <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">
                     {article.title}
                   </h4>
                   <p className="text-gray-400 text-sm line-clamp-2">
                     {article.preview}
                   </p>
+
+                  {/* Stats */}
+                  <div className="mt-4 flex items-center gap-4 text-xs text-gray-400">
+                    <span className="inline-flex items-center gap-1">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                      {article.stats.views}
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h8M8 14h5"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12c0 4.418-4.03 8-9 8-1.02 0-1.997-.146-2.907-.416L3 20l1.218-3.252C3.446 15.774 3 13.94 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                      {article.stats.comments}
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.5C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                      {article.stats.likes}
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}
@@ -324,34 +328,32 @@ const About: React.FC = () => {
         {/* Modal */}
         {isModalOpen && selectedContent && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
             onClick={closeModal}
           >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+
             <div
-              className="bg-white rounded-lg max-w-4xl w-full max-h-[80vh] overflow-y-auto animate-fadeIn"
+              className="relative w-full max-w-4xl max-h-[85vh] overflow-hidden rounded-2xl border border-slate-700 bg-slate-900 shadow-2xl animate-fadeIn"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Modal Header */}
-              <div className="flex justify-between items-center p-6 border-b border-gray-200">
-                <div className="flex items-center">
-                  <div>
-                    <h5 className="font-medium text-gray-900">
-                      Rios Zoe Bunao
-                    </h5>
-                    <p className="text-gray-600 text-sm">
-                      {selectedContent.date} •{" "}
-                      {Math.ceil(selectedContent.content.length / 1000)} min
-                      read
-                    </p>
-                  </div>
+              {/* Header */}
+              <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-slate-900/95 border-b border-slate-700">
+                <div>
+                  <h5 className="text-white font-semibold">{selectedContent.title}</h5>
+                  <p className="text-gray-400 text-xs">
+                    {selectedContent.date} • {Math.ceil(selectedContent.content.length / 1000)} min read
+                  </p>
                 </div>
                 <button
                   onClick={closeModal}
-                  className="text-gray-400 hover:text-gray-600 transition-colors duration-300"
+                  aria-label="Close modal"
+                  className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-slate-600 text-gray-300 hover:text-white hover:border-blue-400 hover:bg-blue-400/10 transition-colors"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
+                    className="h-5 w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -366,28 +368,25 @@ const About: React.FC = () => {
                 </button>
               </div>
 
-              {/* Modal Content */}
-              <div className="p-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  {selectedContent.title}
-                </h2>
-
-                {/* Featured Image */}
+              {/* Body */}
+              <div className="overflow-y-auto max-h-[calc(85vh-60px)]">
                 {selectedContent.image && (
-                  <div className="mb-6">
+                  <div className="relative">
                     <img
                       src={selectedContent.image}
                       alt={selectedContent.title}
-                      className="w-full h-auto rounded-lg"
+                      className="w-full h-auto max-h-96 object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
                   </div>
                 )}
 
-                {/* Article Content */}
-                <div
-                  className="prose prose-lg max-w-none text-gray-700"
-                  dangerouslySetInnerHTML={{ __html: selectedContent.content }}
-                ></div>
+                <div className="px-6 py-6">
+                  <div
+                    className="prose prose-invert max-w-none text-gray-200"
+                    dangerouslySetInnerHTML={{ __html: selectedContent.content }}
+                  ></div>
+                </div>
               </div>
             </div>
           </div>

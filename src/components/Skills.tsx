@@ -1,147 +1,151 @@
 import React from "react";
 
-interface Skill {
+interface SkillItem {
   name: string;
-  level: number;
+  level: "Expert" | "Advanced" | "Intermediate" | "Beginner";
 }
 
 interface SkillCategory {
   title: string;
-  skills: Skill[];
+  skills: SkillItem[];
 }
 
+const categories: SkillCategory[] = [
+  {
+    title: "Frontend",
+    skills: [
+      { name: "HTML", level: "Expert" },
+      { name: "CSS", level: "Expert" },
+      { name: "JavaScript", level: "Advanced" },
+      { name: "TypeScript", level: "Advanced" },
+      { name: "React", level: "Advanced" },
+      { name: "Tailwind CSS", level: "Advanced" },
+      { name: "Bootstrap", level: "Advanced" },
+      { name: "jQuery", level: "Advanced" },
+      { name: "Blazor WASM", level: "Intermediate" },
+    ],
+  },
+  {
+    title: "Backend",
+    skills: [
+      { name: "ASP.NET MVC", level: "Advanced" },
+      { name: "ASP.NET Core", level: "Advanced" },
+      { name: ".NET Framework", level: "Advanced" },
+      { name: "Entity Framework Core", level: "Advanced" },
+      { name: "SignalR", level: "Advanced" },
+      { name: "Minimal APIs", level: "Advanced" },
+      { name: "ASP.NET Web API", level: "Advanced" },
+      { name: "MSSQL", level: "Advanced" },
+    ],
+  },
+  {
+    title: "Architecture & Practices",
+    skills: [
+      { name: "Clean Architecture", level: "Expert" },
+      { name: "Design Patterns", level: "Expert" },
+      { name: "SOLID Principles", level: "Advanced" },
+      { name: "Dependency Injection", level: "Advanced" },
+      { name: "API Design", level: "Advanced" },
+      { name: "Unit Testing", level: "Advanced" },
+      { name: "CI/CD", level: "Intermediate" },
+      { name: "Playwright", level: "Intermediate" },
+    ],
+  },
+  {
+    title: "Other",
+    skills: [
+      { name: "WordPress", level: "Advanced" },
+      { name: "SEO (On‑page)", level: "Intermediate" },
+      { name: "Content Writing", level: "Advanced" },
+    ],
+  },
+];
+
+const levelColor = (level: SkillItem["level"]) => {
+  switch (level) {
+    case "Expert":
+      return "bg-emerald-500/15 text-emerald-300 border-emerald-400/30";
+    case "Advanced":
+      return "bg-blue-500/15 text-blue-300 border-blue-400/30";
+    case "Intermediate":
+      return "bg-amber-500/15 text-amber-300 border-amber-400/30";
+    default:
+      return "bg-slate-500/15 text-slate-300 border-slate-400/30";
+  }
+};
+
 const Skills: React.FC = () => {
-  // Skills categorized by type
-  const skillsCategories: SkillCategory[] = [
-    {
-      title: "Frontend",
-      skills: [
-        { name: "HTML", level: 100 },
-        { name: "CSS", level: 100 },
-        { name: "JavaScript", level: 90 },
-        { name: "Bootstrap", level: 90 },
-        { name: "JQuery", level: 90 },
-        { name: "Tailwind CSS", level: 85 },
-        { name: "ReactJS", level: 80 },
-        { name: "TypeScript", level: 80 },
-        { name: "Blazor WASM", level: 75 },
-      ],
-    },
-    {
-      title: "Backend Technologies",
-      skills: [
-        { name: "ASP.NET MVC (Full Framework)", level: 95 },
-        { name: "ASP.NET Core / .NET Core", level: 90 },
-        { name: ".NET Framework", level: 90 },
-        { name: "Entity Framework Core", level: 85 },
-        { name: "SignalR", level: 85 },
-        { name: "Minimal APIs (.NET Core)", level: 85 },
-        { name: "ASP.NET Web API", level: 80 },
-      ],
-    },
-    {
-      title: "Architecture & Other Tools",
-      skills: [
-        { name: "Clean Code Architecture", level: 100 },
-        { name: "Design Patterns", level: 100 },
-        { name: "API Development", level: 90 },
-        { name: "Unit Testing", level: 85 },
-        { name: "Dependency Injection", level: 80 },
-        { name: "SOLID Principles", level: 80 },
-        { name: "MSSQL", level: 80 },
-        { name: "Playwright.dev", level: 80 },
-        { name: "CI/CD", level: 70 },
-      ],
-    },
-  ];
-
   return (
-    <section id="skills" className="py-20 bg-[#11172B]">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-white mb-2">Skills</h2>
-        <div className="w-16 h-1 bg-[#4169E1] mb-10"></div>
+    <section id="skills" className="py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl lg:text-5xl font-black mb-4">
+            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+              Skills & Expertise
+            </span>
+          </h2>
+          <p className="text-gray-400 max-w-3xl mx-auto">
+            A concise snapshot of the technologies and practices I use to deliver maintainable, scalable software.
+          </p>
+        </div>
 
-        <p className="text-gray-300 mb-12 max-w-2xl">
-          In my 3+ years as a full-stack developer, I’ve built up a wide range
-          of skills that enable me to deliver clean, scalable, and maintainable
-          solutions with a focus on long-term reliability.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillsCategories.map((category, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+          {categories.map((category) => (
             <div
-              key={index}
-              className="bg-[#1a223d] rounded-lg p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:translate-y-[-5px]"
+              key={category.title}
+              className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 shadow-xl"
             >
-              <h3 className="text-xl font-semibold text-[#4169E1] mb-6">
-                {category.title}
-              </h3>
+              <div className="p-6 border-b border-slate-700/50">
+                <h3 className="text-xl font-semibold text-white">
+                  {category.title}
+                </h3>
+              </div>
 
-              <div className="space-y-5">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-white">{skill.name}</span>
-                      <span className="text-gray-400">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-[#0c111f] rounded-full h-2">
-                      <div
-                        className="bg-[#4169E1] h-2 rounded-full"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
+              <div className="p-6">
+                <ul className="space-y-3">
+                  {category.skills.map((skill) => (
+                    <li key={skill.name} className="flex items-center justify-between">
+                      <span className="text-gray-200">{skill.name}</span>
+                      <span
+                        className={
+                          "px-2.5 py-1 rounded-full text-xs font-medium border " +
+                          levelColor(skill.level)
+                        }
+                      >
+                        {skill.level}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-16">
-          <h3 className="text-xl font-semibold text-white mb-6">
-            Additional Skills
-          </h3>
-          <div className="space-y-4">
-            <div className="bg-[#1a223d] rounded-lg p-5 transition-all duration-300 hover:shadow-lg">
-              <p className="text-white">
-                <span className="font-semibold text-[#4169E1]">WordPress</span>{" "}
-                – Gained experience customizing themes using Elementor and
-                managing plugins for small business websites during my
-                internship. Also responsible for maintaining and updating
-                several WordPress sites.
-              </p>
-            </div>
-            <div className="bg-[#1a223d] rounded-lg p-5 transition-all duration-300 hover:shadow-lg">
-              <p className="text-white">
-                <span className="font-semibold text-[#4169E1]">
-                  SEO Management
-                </span>{" "}
-                – On-page optimization and keyword tracking using Yoast and
-                Google Search Console.
-              </p>
-            </div>
-            <div className="bg-[#1a223d] rounded-lg p-5 transition-all duration-300 hover:shadow-lg">
-              <p className="text-white">
-                <span className="font-semibold text-[#4169E1]">
-                  CI/CD Pipelines
-                </span>{" "}
-                – Setting up automated testing and deployment workflows using
-                Azure DevOps and GitHub Actions.
-              </p>
-            </div>
-            <div className="bg-[#1a223d] rounded-lg p-5 transition-all duration-300 hover:shadow-lg">
-              <p className="text-white">
-                <span className="font-semibold text-[#4169E1]">
-                  Content Writing
-                </span>{" "}
-                – I used to write prose and poetry as a personal outlet for
-                self-expression and reflection.
-              </p>
-            </div>
-          </div>
+        <div className="text-center mt-16">
+          <a
+            href="#projects"
+            className="btn-contrast inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
+          >
+            View Projects
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
         </div>
       </div>
     </section>
   );
 };
+
 export default Skills;
