@@ -9,7 +9,7 @@ import About from "./components/About";
 // import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import TechStack from "./components/TechStack";
-import FreelanceBanner from "./components/FreelanceBanner";
+//import FreelanceBanner from "./components/FreelanceBanner";
 
 const App: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
